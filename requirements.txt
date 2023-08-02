@@ -1,0 +1,6 @@
+internetarchive
+split-folders
+ultralytics
+paddlepaddle
+paddleocr
+deep-sort-realtime
