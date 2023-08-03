@@ -1,9 +1,17 @@
 from ultralytics import YOLO
 
-model = YOLO(model='model/anpr.pt', task='detect')
+model = YOLO(model='anpr_weights/anpr.pt', task='detect')
+
+
+def get_predictions(input_data):
+    # print("input_data", input_data)
+    return model.predict(input_data, device='mps', verbose=True)
+
 
 def detect_plates(src):
-    predictions = model.predict(src, verbose=False)
+    print("Get Predictions...")
+    predictions = get_predictions(src)
+    print(f"Obtained {predictions}")
     results = []
     for prediction in predictions:
         for box in prediction.boxes:

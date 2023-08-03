@@ -10,10 +10,16 @@ def plot_sample_images(k=5):
 
 
 def get_plates(src):
+    print("detecting number plates...")
     det_predictions = detect_plates(src)
+    print("Done")
+    print("Running OCR on plate...")
     ocr_predictions = ocr_plates(src, det_predictions)
+    print("Done")
+    print("Displaying Detections on Frame")
     for det_prediction, ocr_prediction in zip(det_predictions, ocr_predictions):
         plot_box(src, det_prediction['coords'], ocr_prediction['plate'])
+    print("Done")
     return src, det_predictions, ocr_predictions
 
 if __name__ == "__main__":

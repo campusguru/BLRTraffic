@@ -12,7 +12,8 @@ aud_exts = (".flac", ".mp3", ".wav", ".wma", ".aac")
 media_ext_dict = {"image": img_exts, "video": vid_exts, "audio": aud_exts}
 
 def get_file_type(input_file_path):
-	file_ext = os.path.basename(input_file_path).split('.')[-1]
+	file_ext = '.' + os.path.basename(input_file_path).split('.')[-1]
+	print('file extrension is ', file_ext)
 	for this_type in media_ext_dict:
 		if file_ext in media_ext_dict[this_type]:
 			return this_type

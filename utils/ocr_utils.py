@@ -1,16 +1,18 @@
-from paddleocr import PaddleOCR
+import easyocr
+# from paddleocr import PaddleOCR
 from utils.img_utils import preprocess_image, crop
 from utils.text_utils import clean_text
 
 
-paddle = PaddleOCR(lang="en", use_angle_cls=True, show_log=False)
+# ocr_reader = PaddleOCR(lang="en", use_angle_cls=True, show_log=False)
+ocr_reader = easyocr.Reader(['en'], gpu=True)
 
 def ocr_plate(src):
     # Preprocess the image for better OCR results
     preprocessed = preprocess_image(src)
 
     # OCR the preprocessed image
-    results = paddle.ocr(preprocessed, det=False, cls=True)
+    results = ocr_reader.ocr(preprocessed, det=False, cls=True)
 
     # Get the best OCR result
     plate_text, ocr_confidence = max(
